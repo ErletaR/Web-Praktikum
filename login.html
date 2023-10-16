@@ -13,11 +13,14 @@
         <img src="chat.png" alt="login --image-" style="width:80px;height:80px;">
     </div>
     
+    <!--Header title-->
     <h1>Please sign in</h1>
-    <h1>TestLilia</h1>
 
-    <form action="friends.html" target="_self">
-        <fieldset>
+    <!--Formular für login-->
+    <form action="friends.html" target="_self"> <!--action-> nach submit wird Friendslist angezeigt-->
+                                                <!--target-> es bleibt im selben Tag, es wird kein neuer erzeugt-->
+        
+        <fieldset>                              
             <legend>Login</legend>
             
             <p>
@@ -29,9 +32,13 @@
                 <input id="password" name="pass" type="password" placeholder="Password" required>
             </p>
         </fieldset>
-        <a href="register.html" target="_self" style="text-decoration: none;">
-            <button type="button">Register</button>
+
+        <!--Button mit link zur Registrierung page-->
+        <a href="register.html" target="_self" style="text-decoration: none;"> <!--link für das ziel-->
+            <button type="button">Register</button>                             <!--das Button-->
         </a>
+
+        <!--Submit button, ziel ist das was in action-Attribut steht-->
         <button type="submit">Login</button>
     </form>
 
