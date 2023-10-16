@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <h2>Profile Settings</h2>
+    </head>
+
+    <body>
+        <form target="_self">
+            <!--BASE DATA-->
+           <p>
+            <fieldset>
+                <legend>Base Data</legend>
+                <p>
+                    <label for="first name">First Name</label>
+                    <input id="first name" name="name" placeholder="Your name">
+                </p>
+                <p>
+                    <label for="last name">Last Name</label>
+                    <input id="last name" name="surname" placeholder="Your surname">
+                </p>
+
+                <label for="drink">Coffee or Tea?</label>
+                <select id="drink" name="drink">
+                    <option value="c">Coffee</option>
+                    <option value="t">Tea</option>
+                    <option value="n" selected>Neither nor</option>
+                </select>
+            </fieldset>
+           </p> 
+           
+
+            <!--TELL SMTH-->
+            <p>
+                <fieldset>
+                    <legend>Tell Something About You</legend>
+                    <textarea id="smth" name="aboutMe" placeholder="Leave a comment here"></textarea>
+                </fieldset>
+            </p>
+            
+
+            <!--CHAT LAYOUT-->
+            <p>
+                <fieldset>
+                    <legend>Prefered Chat Layout</legend>
+                    <p>
+                        <input type="radio" id="chat-inOne" name="chat" value="inOne">
+                        <label for="chat-inOne">Username and message in one line</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="chat-inSep" name="chat" value="inSep">
+                        <label for="chat-inSep">Username and message in separated lines</label>
+                    </p>
+                    
+                </fieldset>
+            </p>
+           
+
+            <!--BUTTONS-->
+            <a href="friends.html" target="_self" style="text-decoration: none;">
+                <button type="button">Cancel</button>
+            </a>
+            <button type="submit">Save</button>
+        </form>
+    </body>
+</html>
