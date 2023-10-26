@@ -1,0 +1,7 @@
+*{
+    max-width: 900px;
+    margin: 5px auto 5px auto;
+}
+legend{
+    text-align: left;
+}
