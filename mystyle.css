@@ -8,7 +8,11 @@ a:hover{
 }
 
 .remove:hover{
-    color:red;
+    color:rgba(255, 0, 0, 0.375);
+}
+
+.remove{
+    color:rgb(255, 0, 0);
 }
 
 a:active{
