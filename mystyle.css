@@ -2,6 +2,13 @@
     max-width: 900px;
     margin: 5px auto 5px auto;
 }
+
+body{
+    color: black;
+    font: normal 16px Arial, Helvetica, sans-serif;
+}
+
 legend{
     margin: 5px auto 5px 5px;
 }
+
