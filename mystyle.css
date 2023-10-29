@@ -3,6 +3,18 @@
     margin: 5px auto 5px auto;
 }
 
+a:hover{
+    color:blueviolet;
+}
+
+.remove:hover{
+    color:red;
+}
+
+a:active{
+    color:aquamarine;
+}
+
 body{
     color: black;
     font: normal 16px Arial, Helvetica, sans-serif;
@@ -11,4 +23,6 @@ body{
 legend{
     margin: 5px auto 5px 5px;
 }
+
+
 
