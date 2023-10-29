@@ -3,6 +3,11 @@
     margin: 5px auto 5px auto;
 }
 
+a{
+    text-decoration: none;
+    color:blue;
+}
+
 a:hover{
     color:blueviolet;
 }
