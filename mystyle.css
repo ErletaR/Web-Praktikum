@@ -1,5 +1,5 @@
 *{
-    max-width: 80%;
+    max-width: 900px;
     margin: 5px auto 5px auto;
 }
 
@@ -30,18 +30,57 @@ body{
     background-color: rgb(235, 232, 232);
 }
 
-legend{
-    margin: 5px auto 5px 5px;
+.whitebox{
+    background-color: white;
+    border-style: groove;
+    border-color: lightgrey;
+    border-width: 2px;
+    border-radius: 5px;
 }
+
 fieldset{
     background-color: white;
     border-style: dotted;
 }
 
-.whitebox{
-    background-color: white;
-    border-style: groove;
-    border-color: lightgrey;
+legend{
+    margin: 5px auto 5px 5px;
 }
+
+.centered{
+    margin: 15px auto 15px auto;
+    text-align: center;
+}
+img.centered{
+    border-radius: 50%;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+}
+
+form{
+    text-align: center;
+    color: black;
+    font: normal 16px Arial, Helvetica, sans-serif;
+}
+
+input{
+    width: 180px;
+    font: normal 16px Arial, Helvetica, sans-serif;
+}
+
+button{
+    color: white;
+    border: hidden;
+    background-color: gray;
+    padding: 10px 14px;
+}
+
+#submit {
+    background-color:#1a75ff;
+  }
+
+
+
 
 
