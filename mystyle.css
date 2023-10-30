@@ -1,5 +1,5 @@
 *{
-    max-width: 900px;
+    max-width: 80%;
     margin: 5px auto 5px auto;
 }
 
@@ -27,11 +27,21 @@ a:active{
 body{
     color: black;
     font: normal 16px Arial, Helvetica, sans-serif;
+    background-color: rgb(235, 232, 232);
 }
 
 legend{
     margin: 5px auto 5px 5px;
 }
+fieldset{
+    background-color: white;
+    border-style: dotted;
+}
 
+.whitebox{
+    background-color: white;
+    border-style: groove;
+    border-color: lightgrey;
+}
 
 
