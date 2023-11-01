@@ -123,10 +123,16 @@ form>button{
     font: normal 16px Arial, Helvetica, sans-serif;
     padding: 5px 6px;
   }
-
-  fieldset.radio{
+/* radio versuch*/
+  fieldset.radio>input{
     text-align: left;
+    float: left;
   }
+
+  fieldset.radio>label{
+    display: inline-block;
+    text-align: left;
+  }  
 
   h1{
     padding-bottom: 15px;
