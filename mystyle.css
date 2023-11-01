@@ -124,6 +124,10 @@ form>button{
     padding: 5px 6px;
   }
 
+  fieldset.radio{
+    text-align: left;
+  }
+
   h1{
     padding-bottom: 15px;
     font-weight: 800;
