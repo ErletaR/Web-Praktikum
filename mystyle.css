@@ -41,6 +41,7 @@ body{
 fieldset{
     background-color: white;
     border-style: dotted;
+    border-color: lightgray;
 }
 /* ?  */
 fieldset.smaller{
