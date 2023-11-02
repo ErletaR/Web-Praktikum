@@ -1,6 +1,12 @@
 *{
-    max-width: 900px;
     margin: 5px auto 5px auto;
+}
+
+body{
+    max-width: 55%;
+    color: black;
+    font: normal 16px Arial, Helvetica, sans-serif;
+    background-color: rgb(235, 232, 232);
 }
 
 a{
@@ -22,12 +28,6 @@ a:hover{
 
 a:active{
     color:aquamarine;
-}
-
-body{
-    color: black;
-    font: normal 16px Arial, Helvetica, sans-serif;
-    background-color: rgb(235, 232, 232);
 }
 
 .whitebox{
@@ -76,7 +76,7 @@ label{
     width: 40%;
 }
 
-fieldset.inputs>p{
+fieldset.inputs > p{
     margin-bottom: 0px;
     margin-top: 0px;
 }
@@ -95,16 +95,16 @@ button{
     border-radius: 5px;
 }
 
-form>button,form>a>button{
+form > button, form > a > button{
     border-radius: 0px;
 }
 
-.fullline>input{
+.fullline > input{
     width: 75%;
     padding: 7px 14px;
     float: left;
 }
-.fullline>button{
+.fullline > button{
     width: 18%;
     float: right;
 }
@@ -129,7 +129,7 @@ fieldset.radio{
     text-align: left;
 }
 
-#chat-inOne,#chat-inSep{
+#chat-inOne, #chat-inSep{
     width: auto;
     margin: 5px 5px 5px 5px;
   }
