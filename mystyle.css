@@ -94,7 +94,7 @@ button{
     border-radius: 5px;
 }
 
-form>button{
+form>button,form>a>button{
     border-radius: 0px;
 }
 
