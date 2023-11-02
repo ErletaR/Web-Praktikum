@@ -100,12 +100,12 @@ form > button, form > a > button{
 }
 
 .fullline > input{
-    width: 75%;
+    min-width: 75%;
     padding: 7px 14px;
     float: left;
 }
 .fullline > button{
-    width: 18%;
+    min-width: 18%;
     float: right;
 }
 
