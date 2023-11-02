@@ -3,10 +3,17 @@
 }
 
 body{
-    max-width: 55%;
     color: black;
     font: normal 16px Arial, Helvetica, sans-serif;
     background-color: rgb(235, 232, 232);
+}
+
+body.small{
+    max-width: 55%;
+}
+
+body.big{
+    max-width: 80%;
 }
 
 a{
