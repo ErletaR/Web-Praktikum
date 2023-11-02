@@ -124,15 +124,19 @@ form>button{
     padding: 5px 6px;
   }
 /* radio versuch*/
-  fieldset.radio>input{
+fieldset.radio{
     text-align: left;
-    float: left;
+}
+
+#chat-inOne,#chat-inSep{
+    width: auto;
+    margin: 5px 5px 5px 5px;
   }
 
-  fieldset.radio>label{
-    display: inline-block;
+  label.radio{
     text-align: left;
-  }  
+  }
+
 
   h1{
     padding-bottom: 15px;
