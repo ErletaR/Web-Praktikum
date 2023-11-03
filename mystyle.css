@@ -9,11 +9,11 @@ body{
 }
 
 body.small{
-    max-width: 55%;
+    max-width: 500px;
 }
 
 body.big{
-    max-width: 80%;
+    max-width: 900px;
 }
 
 a{
@@ -49,11 +49,6 @@ fieldset{
     background-color: white;
     border-style: dotted;
     border-color: lightgray;
-}
-/* ?  */
-fieldset.smaller{
-    display: inline-block;
-    width: 400px;
 }
 
 legend{
