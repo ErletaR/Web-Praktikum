@@ -1,6 +1,6 @@
-*{
+/**{
     margin: 5px auto 5px auto;
-}
+}*/
 
 body{
     color: black;
@@ -10,11 +10,13 @@ body{
 
 body.small{
     max-width: 500px;
+    margin: 5px auto 5px auto;
 }
 
 body.big{
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 5px 20px;
+    /*margin-left: 20px;
+    margin-right: 20px;*/
 }
 
 a{
@@ -26,11 +28,26 @@ a:hover{
     color:blueviolet;
 }
 
+/*erleta*/
 .container{
     display: flex;
     flex-direction: row;
     justify-content: space-between
 }
+ul{
+    list-style-type: none;
+}
+.profile-container{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-evenly;
+}
+/*#proftext{
+    display: block;
+    width: 30%;
+}*/
+
 
 .remove:hover{
     color:rgba(255, 0, 0, 0.375);
