@@ -16,7 +16,7 @@ body.small{
 body.big{
     max-width: 1200px;
     margin: 5px auto;
-    margin: 8px;
+    padding: 8px;
     /*margin-left: 20px;
     margin-right: 20px;*/
 }
