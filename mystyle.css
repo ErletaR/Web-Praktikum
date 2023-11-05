@@ -42,15 +42,16 @@ ul{
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 #proftext{
     display: block;
-    width: 30%;
+    width: 40%;
 }
 #profpic{
     display: block;
-    
+    width: 40%;
+
 }
 
 
