@@ -14,7 +14,7 @@ body.small{
 }
 
 body.big{
-    max-width: 900px;
+    max-width: 1200px;
     margin: 5px auto;
     /*margin-left: 20px;
     margin-right: 20px;*/
@@ -80,12 +80,14 @@ div#proftext{
     display: block;
     margin: 16px;*
     flex-grow: 1;
+    min-width: 500px;
     /*width: 50%;*/
 }
 div#profpic{
     display: block;
     margin: 16px;
     flex-grow: 1;
+    max-width: auto;
     /*max-width: 30%;*/
 
 }
@@ -109,6 +111,7 @@ a:active{
     border-color: lightgrey;
     border-width: 2px;
     border-radius: 5px;
+    padding: 8px;
 }
 
 fieldset{
@@ -222,9 +225,13 @@ hr{
     border: 1px dashed;
 }
 
+.boldtext{
+    font-weight: bold;
+}
+
 
   /*MEDIA QUIERIES*/
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
     
 }
 
