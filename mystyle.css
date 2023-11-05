@@ -263,5 +263,12 @@ hr{
 .fullline>button, .fullline>input{
     float: none;
 }
+.profile-container{
+    flex-direction: column;
+}
+div#profpic{
+
+    text-align: center;
+}
 }
 
