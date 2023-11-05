@@ -232,7 +232,24 @@ hr{
 
   /*MEDIA QUIERIES*/
 @media screen and (max-width: 900px) {
-    
+    .col-1{
+        width:90%;
+        text-align: left;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+    .col-2{
+        width: 90%;
+        margin-bottom: 5px;
+    }
+    .but-1{
+        width: 90%;
+        margin-bottom: 8px;
+        margin-top: 8px;
+    }
+    .but-2{
+        width: 90%;
+    }
 }
 
 
