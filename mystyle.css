@@ -232,16 +232,21 @@ hr{
 
   /*MEDIA QUIERIES*/
 @media screen and (max-width: 900px) {
+    /*Label to the left*/
     .col-1{
         width:90%;
         text-align: left;
         margin-bottom: 5px;
         margin-top: 5px;
     }
+
+    /*Input*/
     .col-2{
         width: 90%;
         margin-bottom: 5px;
     }
+
+    /*Buttons*/
     .but-1{
         width: 90%;
         margin-bottom: 8px;
