@@ -207,6 +207,7 @@ fieldset.radio{
 }
 
 label.radio{
+    width: 80%;
     text-align: left;
 }
 
@@ -256,6 +257,11 @@ hr{
     .but-2{
         width: 90%;
     }
+    button.but-einzeln{
+        width: 94%;
+}
+.fullline>button, .fullline>input{
+    float: none;
 }
 
 
