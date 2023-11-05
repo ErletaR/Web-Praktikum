@@ -14,7 +14,8 @@ body.small{
 }
 
 body.big{
-    margin: 5px 20px;
+    max-width: 900px;
+    margin: 5px auto;
     /*margin-left: 20px;
     margin-right: 20px;*/
 }
@@ -43,10 +44,14 @@ ul{
     align-items: stretch;
     justify-content: space-evenly;
 }
-/*#proftext{
+#proftext{
     display: block;
     width: 30%;
-}*/
+}
+#profpic{
+    display: block;
+    
+}
 
 
 .remove:hover{
