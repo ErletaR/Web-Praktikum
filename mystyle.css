@@ -148,8 +148,8 @@ label{
 }
 
 fieldset.inputs > p{
-    margin-bottom: 0px;
-    margin-top: 0px;
+    margin-bottom: 4px;
+    margin-top: 4px;
 }
 
 input{
