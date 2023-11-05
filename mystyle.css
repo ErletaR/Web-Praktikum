@@ -29,6 +29,38 @@ a:hover{
     color:blueviolet;
 }
 
+#friends>li>div>a, #friends>li>a{
+    color: black;
+}
+
+#friends{
+    padding-left: 10px;
+}
+
+#friends>li{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.bluebox{
+    background-color: #1a75ff;
+    color: white;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right:8px;
+}
+
+.timestamp{
+    color: lightgrey;
+}
+
+#chatnachricht{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
 /*erleta*/
 .container{
     display: flex;
@@ -42,15 +74,19 @@ ul{
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
-#proftext{
+div#proftext{
     display: block;
-    width: 40%;
+    margin: 16px;*
+    flex-grow: 1;
+    /*width: 50%;*/
 }
-#profpic{
+div#profpic{
     display: block;
-    width: 40%;
+    margin: 16px;
+    flex-grow: 1;
+    /*max-width: 30%;*/
 
 }
 
@@ -183,8 +219,9 @@ h3{
 }
 
 hr{
-    border-top: 1px dashed;
+    border: 1px dashed;
 }
+
 
   /*MEDIA QUIERIES*/
 @media screen and (max-width: 700px) {
