@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Friends</title>
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+        <meta name="viewport" content="width=device-width" >
+    </head>
+    <body class="big">
+        <h1>Friends</h1>
+        <!--LINKS TO LOGOUT AND SETTINGS-->
+        <p>
+            <a href="logout.html" target="_self">&lt; Logout</a> |
+            
+            <a href="settings.html" target="_self">Settings</a>
+        </p>
+       
+        <hr> 
+
+        <!--FRIENDSLIST-->
+        <ul id="friends" class="whitebox" >
+            <li><div class="container">
+                <a href="chat.html" target="_self">Tom</a>
+                <div class="bluebox">3</div>
+            </div></li>
+            <li><div class="container">
+                <a href="chat.html" target="_self">Marvin</a>
+                <div class="bluebox">1</div>
+            </div></li>
+            <li><a href="chat.html" target="_self">Tick</a></li>
+            <li><a href="chat.html" target="_self">Trick</a></li>
+        </ul>
+        <hr>
+
+        <!--FRIEND REQUESTS-->
+        <h3>New Requests</h3>
+        <ol>
+            <p>
+                <li class="col-1"> Friend request from <b>Track</b>  
+                    <button class="but-1" type="button">Accept</button>
+                    <button class="but-2" type="button">Reject</button>
+                </li>
+                <!--Button accept and reject-->
+                <!--tbd: was soll passieren wenn ein button gedrückt wird-->
+            </p>
+        </ol>
+        <hr>
+
+        <!--ADD NEW FRIENDS--> 
+        <form class="fullline" action="friends.html" target="_self"> 
+            <input class="col-2" name="add friend" placeholder="Add Friend to List">
+            <button class="but-einzeln" type="submit">Add</button>
+        </form>
+
+    </body>
+</html>
