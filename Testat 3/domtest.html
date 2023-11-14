@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>DOM test</title>
+    </head>
+    <body>
+        
+        <script>
+            let element = document.createElement("p");
+            element.innerText = "Hallo, Welt!";
+            document.body.appendChild(element);
+
+            let element1 = document.createElement("ul");
+            element1.innerText = "My list";
+            element1.id = "myList";
+            document.body.appendChild(element1);
+
+            let listelem = document.createElement("li");
+            listelem.innerText = "First list element";
+            listelem.id = "firstListElem";
+            document.getElementById("myList").appendChild(listelem);
+
+        </script>
+    </body>
+</html>

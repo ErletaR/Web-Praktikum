@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>AJAX test</title>
+    </head>
+
+    <body>
+
+        <script>
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if(xmlhttp.status == 200) {
+                        console.log(xmlhttp.responseText);
+                        let data = JSON.parse(xmlhttp.responseText);
+                        console.log(data);
+                    } else {
+                        console.error("Fehler (" + xmlhttp.status + "): "
+                        + xmlhttp.responseText);
+                    }
+                }
+            };
+            xmlhttp.open("GET", "https://online-lectures-cs.thi.de/chat/test.json", true);
+            xmlhttp.send();
+            /*
+            var data = [
+                {
+                    "msg": "Hello, World!",
+                    "from": "Tom",
+                    "time": 1699540879720
+                },
+                {
+                    "msg": "42",
+                    "from": "Jerry",
+                    "time": 1699627279720
+                }
+            ]
+            
+            console.log(data);
+            */
+        </script>
+    </body>
+</html>
