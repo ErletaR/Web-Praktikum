@@ -79,7 +79,7 @@ ul{
 }
 div#proftext{
     display: block;
-    margin: 16px;*
+    margin: 16px;
     flex-grow: 1;
     min-width: 500px;
     /*width: 50%;*/
@@ -229,6 +229,15 @@ hr{
 
 .boldtext{
     font-weight: bold;
+}
+
+ol>li{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.but-1,.but-2{
+    margin-left: 5px;
 }
 
 
