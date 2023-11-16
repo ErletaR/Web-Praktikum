@@ -49,14 +49,12 @@
         <hr>
 
         <!--ADD NEW FRIENDS--> 
-        <form class="fullline" action="friends.html" target="_self" > 
+        <form class="fullline" action="friends.html" target="_self" id="friendrequest" > 
             <input class="col-2" name="friendRequestName" placeholder="Add Friend to List" id="friend-request-name" list="friend-selector" onkeyup="keyup(this)">
             <datalist id="friend-selector">
-                <option>Tom</option>
-                <option>Jerry</option>
                 <!-- weitere Einträge -->
                 </datalist>
-            <button class="but-einzeln" type="button">Add</button>
+            <button class="but-einzeln" type="button" onclick="checkForm()">Add</button>
         </form>
 
     </body>
