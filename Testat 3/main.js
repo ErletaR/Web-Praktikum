@@ -12,23 +12,26 @@ window.setInterval(function() {
     friendupdate();
     }, 1000);
 
-    const xmlhttp = new XMLHttpRequest();
-
-xmlhttp.onreadystatechange = function () {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        let data = JSON.parse(xmlhttp.responseText);
-        friends = data;
-        console.log(data);
+    function getfriends(){
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                let data = JSON.parse(xmlhttp.responseText);
+                friends = data;
+                console.log(data);
+            }
+    };
+    xmlhttp.open("GET", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend", true);
+    xmlhttp.setRequestHeader('Content-type', 'application/json');
+    xmlhttp.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0IjoxNzAwMTIxODI0fQ.Q1zk9O-rIDPts-QhbNpN8ukWajWtUdRBwLt_Jw9MQdI');
+    xmlhttp.send();
     }
-};
-xmlhttp.open("GET", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend", true);
-xmlhttp.setRequestHeader('Content-type', 'application/json');
-xmlhttp.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0IjoxNzAwMTIxODI0fQ.Q1zk9O-rIDPts-QhbNpN8ukWajWtUdRBwLt_Jw9MQdI');
-xmlhttp.send();
+    
 
 
 
 function initNames(prefix) {
+    const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         let data = JSON.parse(xmlhttp.responseText);
@@ -65,6 +68,7 @@ function initNames(prefix) {
 
 function keyup(input) {
     document.getElementById("friend-request-name").style.borderColor= "lightgrey";
+    getfriends();
     const text = input.value;
     initNames(text);
 }
@@ -105,6 +109,7 @@ function testsame(inputValue){
 }
 
 function friendupdate(){
+    getfriends();
     for(var i = 0;i<friends.length;i++){
         if(friends[i].status=="accepted"){
             
