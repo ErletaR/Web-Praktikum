@@ -106,7 +106,7 @@ function testsame(inputValue){
 
 function friendupdate(){
     for(var i = 0;i<friends.length;i++){
-        if(friends[i].status==accepted){
+        if(friends[i].status=="accepted"){
             
         }
     } 
