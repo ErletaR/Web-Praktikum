@@ -11,14 +11,16 @@ var friends = [];
 window.setInterval(function () {
     friendupdate();
 }, 1000);
-/* Freunde löschen
+getusers();
+/* Freunde löschen 
+
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
             console.log("Removed...");
         }
     };
-    xmlhttp.open("DELETE", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend/Truck", true);
+    xmlhttp.open("DELETE", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend/Tick", true);
     xmlhttp.setRequestHeader('Content-type', 'application/json');
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
@@ -40,49 +42,43 @@ function getfriends() {
     xmlhttp.send();
 }
 
-
-
-// datalist befüllen
-function initNames(prefix) {
+function getusers(){
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             let data = JSON.parse(xmlhttp.responseText);
             users = data;
-            const datalist = document.getElementById('friend-selector');
-
-            datalist.innerHTML = '';
-            /*
-            while (datalist.firstChild) {
-                datalist.removeChild(datalist.firstChild);
-            }*/
-
-            console.log(`datalist: ${datalist.children.length}`);
-
-            for (let name of users) {
-                if (prefix === '' || name.toLowerCase().startsWith(prefix) || name.startsWith(prefix)) {
-                    if (name != user && testsame(name)) {
-                        console.log('adding ' + name);
-                        const option = document.createElement('OPTION');
-                        option.setAttribute('value', name);
-                        datalist.appendChild(option);
-                    }
-                }
-            }
-            console.log(users);
+            console.log(data);
         }
     };
-    // Chat Server URL und Collection ID als Teil der URL
     xmlhttp.open("GET", window.backendURL + "/user", true);
-    // Das Token zur Authentifizierung, wenn notwendig
+    xmlhttp.setRequestHeader('Content-type', 'application/json');
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
 }
 
+
+// datalist befüllen
+function initNames(prefix) {
+    const datalist = document.getElementById('friend-selector');
+    datalist.innerHTML = '';
+    for (let name of users) {
+        if (prefix === '' || name.toLowerCase().startsWith(prefix) || name.startsWith(prefix)) {
+            if (name != user && testsame(name)) {
+                console.log('adding ' + name);
+                const option = document.createElement('OPTION');
+                option.setAttribute('value', name);
+                datalist.appendChild(option);
+            }
+        }
+    }
+}
+
 // auf eingabe reagieren
 function keyup(input) {
-    document.getElementById("friend-request-name").style.borderColor = "rgb(118, 118, 118)";
+    getusers();
     getfriends();
+    document.getElementById("friend-request-name").style.borderColor = "rgb(118, 118, 118)";
     const text = input.value;
     initNames(text);
 }
