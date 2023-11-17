@@ -11,7 +11,7 @@ var friends = [];
 window.setInterval(function () {
     friendupdate();
 }, 1000);
-/*
+/* Freunde löschen
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
@@ -23,6 +23,8 @@ window.setInterval(function () {
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
 */
+
+
 function getfriends() {
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -40,7 +42,7 @@ function getfriends() {
 
 
 
-
+// datalist befüllen
 function initNames(prefix) {
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -75,10 +77,9 @@ function initNames(prefix) {
     // Das Token zur Authentifizierung, wenn notwendig
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
-
-
 }
 
+// auf eingabe reagieren
 function keyup(input) {
     document.getElementById("friend-request-name").style.borderColor = "rgb(118, 118, 118)";
     getfriends();
@@ -86,12 +87,10 @@ function keyup(input) {
     initNames(text);
 }
 
+// formular kontrollieren
 function checkForm() {
     const inputValue = document.querySelector('input[name="friendRequestName"]').value;
-
     if (inputValue != user && testsame(inputValue)) {
-
-
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
@@ -112,7 +111,7 @@ function checkForm() {
         document.getElementById("friend-request-name").style.borderColor = "red";
     }
 }
-
+// Testen ob name schon in Freundesliste ist
 function testsame(inputValue) {
     for (var i = 0; i < friends.length; i++) {
         if (friends[i].username == inputValue) {
@@ -122,7 +121,7 @@ function testsame(inputValue) {
     return true;
 }
 
-
+// Freundesliste updaten
 function friendupdate() {
     getfriends();
     while (document.getElementById("friends").firstChild) {
@@ -131,8 +130,6 @@ function friendupdate() {
     while (document.getElementById("friendrequests").firstChild) {
         document.getElementById("friendrequests").removeChild(document.getElementById("friendrequests").firstChild);
     }
-
-
     for (var i = 0; i < friends.length; i++) {
         if (friends[i].status == "accepted") {
             let li = document.createElement("li");
