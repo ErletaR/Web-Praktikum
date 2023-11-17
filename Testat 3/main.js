@@ -20,7 +20,7 @@ getusers();
             console.log("Removed...");
         }
     };
-    xmlhttp.open("DELETE", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend/Tick", true);
+    xmlhttp.open("DELETE", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend/t", true);
     xmlhttp.setRequestHeader('Content-type', 'application/json');
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
@@ -86,7 +86,7 @@ function keyup(input) {
 // formular kontrollieren
 function checkForm() {
     const inputValue = document.querySelector('input[name="friendRequestName"]').value;
-    if (inputValue != user && testsame(inputValue)) {
+    if (inputValue != user && testsame(inputValue) && users.includes(inputValue)) {
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
