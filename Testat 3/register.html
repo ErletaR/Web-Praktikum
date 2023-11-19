@@ -19,7 +19,7 @@
         <h1 class="centered">Register yourself</h1>
 
         <!--REGISTER FORM-->
-        <form action="friends.html"> 
+        <form id="register-form" action="friends.html" onsubmit="return checkRegisterInput()"> 
             <fieldset class="inputs" class="smaller">
                 <legend>Register</legend>
                 
@@ -33,7 +33,7 @@
                 </p>
                 <p>
                     <label class="col-1" for="confirm password">Confirm Password</label>
-                    <input class="col-2" id="confirm password" name="pass" type="password" placeholder="Confirm Password" required>
+                    <input class="col-2" id="confirm-password" name="pass" type="password" placeholder="Confirm Password" required>
                 </p>
             </fieldset>
 
@@ -45,6 +45,6 @@
             <!--Submit Button-->
             <button  class="but-2" id="submit" type="submit">Create Account</button> 
         </form>
-
+        
     </body>
 </html>

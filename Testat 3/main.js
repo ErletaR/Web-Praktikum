@@ -40,6 +40,8 @@ function getfriends() {
     xmlhttp.setRequestHeader('Content-type', 'application/json');
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
+
+    return friends;
 }
 
 function getusers(){
@@ -55,8 +57,35 @@ function getusers(){
     xmlhttp.setRequestHeader('Content-type', 'application/json');
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
+
+    return users;
 }
 
+function userExists(user) {
+
+    let returnVal = false;
+
+    const requestUrl = window.backendURL;
+
+    var xmlhttp = new XMLHttpRequest();
+    
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+            if(xmlhttp.status == 204) {
+                console.log('User exists');
+                returnVal = true;
+            } else if(xmlhttp.status == 404) {
+                console.log('User does not exist');
+                returnVal = false;
+            }
+        }
+    };
+    
+    xmlhttp.open("GET", requestUrl + "/user/" + user, false);
+    xmlhttp.send();
+
+    return returnVal;
+}
 
 // datalist befüllen
 function initNames(prefix) {
@@ -160,4 +189,61 @@ function friendupdate() {
             li2.appendChild(but2);
         }
     }
+}
+
+//REGISTER
+
+function checkRegisterInput() {
+    
+    let returnVal = true;
+
+    let users = getusers();
+
+    const usernameInput = document.querySelector('#username');
+    const passwordInput = document.querySelector('#password');
+    const confirmPasswordInput = document.querySelector('#confirm-password');
+
+    if(usernameInput.value.length < 3 ){
+        alert('The username needs to have at least 3 charakters or longer!');
+        usernameInput.style.borderColor = "red";
+        returnVal = false;
+    } else {
+        usernameInput.style.borderColor = "green";
+    }
+
+    if(passwordInput.value.length < 8 ){
+        alert('The password needs to have at least 8 charakters or longer!');
+        passwordInput.style.borderColor = "red";
+        returnVal = false;
+    } else {
+        passwordInput.style.borderColor = "green";
+    }
+
+    if(passwordInput.value !== confirmPasswordInput.value){
+        alert('The password confirmation does not match!');
+        confirmPasswordInput.style.borderColor = "red";
+        returnVal = false;
+    } else {
+        confirmPasswordInput.style.borderColor = "green";
+    }
+
+    if(userExists(usernameInput.value)) {
+        alert('User already exists!');
+        usernameInput.style.borderColor = "red";
+        returnVal = false;
+    } else {
+        if(usernameInput.style.borderColor !== "red") {
+            usernameInput.style.borderColor = "green";
+        }
+    }
+
+    // alternative method to check for user existence
+    /*users.forEach(user => {
+         if(user === usernameInput.value) {
+            alert('User already exists!');
+            returnVal = false;
+         }
+    });*/
+
+    return returnVal;
 }
