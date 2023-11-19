@@ -8,9 +8,6 @@ window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0Ijo
 var users = [];
 var user = "Tom";
 var friends = [];
-window.setInterval(function () {
-    friendupdate();
-}, 1000);
 getusers();
 /* Freunde löschen 
 
