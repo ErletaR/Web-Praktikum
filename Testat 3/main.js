@@ -8,7 +8,9 @@ window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0Ijo
 var users = [];
 var user = "Tom";
 var friends = [];
+var messages = [];
 getusers();
+listmessages();
 /* Freunde löschen 
 
     let xmlhttp = new XMLHttpRequest();
@@ -111,7 +113,7 @@ function keyup(input) {
 
 // formular kontrollieren
 function checkForm() {
-    const inputValue = document.querySelector('input[name="friendRequestName"]').value;
+    
     if (inputValue != user && testsame(inputValue) && users.includes(inputValue)) {
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -161,7 +163,7 @@ function friendupdate() {
             div2.className = "bluebox";
             div.className = "container";
             a.innerText = friends[i].username;
-            a.setAttribute("href", "chat.html");
+            a.setAttribute("href", "chat.html?friend=" + friends[i].username);
             div2.innerHTML = friends[i].unread;
             document.getElementById("friends").appendChild(li);
             li.appendChild(div);
@@ -244,3 +246,69 @@ function checkRegisterInput() {
 
     return returnVal;
 }
+
+//friends
+
+function getChatpartner() {
+    const url = new URL(window.location.href);
+    // Access the query parameters using searchParams
+    const queryParams = url.searchParams;
+    // Retrieve the value of the "friend" parameter
+    const friendValue = queryParams.get("friend");
+    console.log("Friend:", friendValue);
+    return friendValue;
+    }
+
+    function listmessages(){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                let data = JSON.parse(xmlhttp.responseText);
+                messages = data;
+                console.log(data);
+            }
+        };
+        xmlhttp.open("GET",  window.backendURL +"/message"  + "/" + getChatpartner(), true);
+        xmlhttp.setRequestHeader('Authorization',  'Bearer ' + window.token);
+        xmlhttp.send();
+
+    }
+
+    function loadchat(){
+         listmessages();
+        document.getElementById("title").innerHTML = "Chat with " + getChatpartner();
+        document.getElementById("chat").innerHTML="";
+        for(var i = 0; i < messages.length; i++){
+            let div = document.createElement("div");
+            let div2 = document.createElement("div");
+            let div3 = document.createElement("div");
+            div.className="container";
+            div.id= "chatnachricht";
+            div3.className= "timestamp";
+            div2.innerHTML= messages[i].msg;
+            div3.innerHTML = messages[i].time;
+            document.getElementById("chat").appendChild(div);
+            div.appendChild(div2);
+            div.appendChild(div3);
+        }
+    }
+
+    function sendmessage(){
+        const inputValue = document.querySelector('input[name="new message"]').value;
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
+                console.log("done...");
+            }
+        };
+        xmlhttp.open("POST", window.backendURL + "/message", true);
+        xmlhttp.setRequestHeader('Content-type', 'application/json');
+        xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
+        let data = {
+            message: inputValue,
+            to: getChatpartner()
+        };
+        let jsonString = JSON.stringify(data);
+        xmlhttp.send(jsonString);
+
+    }

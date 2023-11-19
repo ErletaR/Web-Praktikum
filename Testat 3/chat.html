@@ -10,8 +10,13 @@
     </head>
 
     <body class="big">
+        <script>
+            window.setInterval(function () {
+                loadchat();
+            }, 1000);
+        </script>
         
-        <h1>Chat with Tom</h1> 
+        <h1 id="title"></h1> 
         
         <!--LINKS-->
         <p>
@@ -21,7 +26,7 @@
         </p>
 
         <!--THE CHAT-->
-        <div class="whitebox">
+        <div class="whitebox" id="chat">
             <div id="chatnachricht" class="container">
                 <div>Tom: Hallo!</div>
                 <div class="timestamp">19:43:01</div>
@@ -36,7 +41,7 @@
         <p>
             <form class="fullline" action="chat.html" target="_self"> 
                 <input class="col-2" name="new message" placeholder="New Message">
-                <button class="but-einzeln" type="submit">Send</button>
+                <button class="but-einzeln" type="button" onclick="sendmessage()">Send</button>
             </form>
         </p>
         
