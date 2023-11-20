@@ -21,7 +21,7 @@ listmessages();
             console.log("Removed...");
         }
     };
-    xmlhttp.open("DELETE", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend/t", true);
+    xmlhttp.open("DELETE", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend/Jerry", true);
     xmlhttp.setRequestHeader('Content-type', 'application/json');
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
@@ -115,7 +115,7 @@ function keyup(input) {
 
 // formular kontrollieren
 function checkForm() {
-    
+    const inputValue = document.querySelector('input[name="friendRequestName"]').value;
     if (inputValue != user && testsame(inputValue) && users.includes(inputValue)) {
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -205,7 +205,7 @@ function checkRegisterInput() {
     const confirmPasswordInput = document.querySelector('#confirm-password');
 
     if(usernameInput.value.length < 3 ){
-        alert('The username needs to have at least 3 charakters or longer!');
+        alert('The username needs to have at least 3 characters or more!');
         usernameInput.style.borderColor = "red";
         returnVal = false;
     } else {
@@ -213,7 +213,7 @@ function checkRegisterInput() {
     }
 
     if(passwordInput.value.length < 8 ){
-        alert('The password needs to have at least 8 charakters or longer!');
+        alert('The password needs to have at least 8 characters or more!');
         passwordInput.style.borderColor = "red";
         returnVal = false;
     } else {
