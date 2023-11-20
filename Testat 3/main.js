@@ -2,11 +2,11 @@
 window.backendURL = "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9";
 //token für tom
 //window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0IjoxNjk5OTc3NTM1fQ.q7Dhc-cVLgpgfc9RlyrZNXQE8skc9r4xIOFGwjHhNPY";
-window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0IjoxNzAwMTIxODI0fQ.Q1zk9O-rIDPts-QhbNpN8ukWajWtUdRBwLt_Jw9MQdI"
+//window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0IjoxNzAwMTIxODI0fQ.Q1zk9O-rIDPts-QhbNpN8ukWajWtUdRBwLt_Jw9MQdI"
 //token für jerry
 //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiSmVycnkiLCJpYXQiOjE2OTk5Nzc1MzV9.6dOl6Pa7aHtAjvCVwBcD1q1wNOHXKSgKk5lTiierjzs
 
-//window.token =localStorage.token;
+window.token =localStorage.token;
 var users = [];
 var user = "Tom";
 var friends = [];
