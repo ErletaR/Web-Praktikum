@@ -5,13 +5,14 @@ window.backendURL = "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9
 window.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0IjoxNzAwMTIxODI0fQ.Q1zk9O-rIDPts-QhbNpN8ukWajWtUdRBwLt_Jw9MQdI"
 //token für jerry
 //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiSmVycnkiLCJpYXQiOjE2OTk5Nzc1MzV9.6dOl6Pa7aHtAjvCVwBcD1q1wNOHXKSgKk5lTiierjzs
+
+//window.token =localStorage.token;
 var users = [];
 var user = "Tom";
 var friends = [];
-window.setInterval(function () {
-    friendupdate();
-}, 1000);
+var messages = [];
 getusers();
+listmessages();
 /* Freunde löschen 
 
     let xmlhttp = new XMLHttpRequest();
@@ -20,7 +21,7 @@ getusers();
             console.log("Removed...");
         }
     };
-    xmlhttp.open("DELETE", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend/t", true);
+    xmlhttp.open("DELETE", "https://online-lectures-cs.thi.de/chat/4f9b8bf6-2349-44b0-9854-8bab2c105da9/friend/Jerry", true);
     xmlhttp.setRequestHeader('Content-type', 'application/json');
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
     xmlhttp.send();
@@ -166,7 +167,7 @@ function friendupdate() {
             div2.className = "bluebox";
             div.className = "container";
             a.innerText = friends[i].username;
-            a.setAttribute("href", "chat.html");
+            a.setAttribute("href", "chat.html?friend=" + friends[i].username);
             div2.innerHTML = friends[i].unread;
             document.getElementById("friends").appendChild(li);
             li.appendChild(div);
@@ -253,3 +254,103 @@ function checkRegisterInput() {
 
     return returnVal;
 }
+
+//chat
+
+function getChatpartner() {
+    const url = new URL(window.location.href);
+    // Access the query parameters using searchParams
+    const queryParams = url.searchParams;
+    // Retrieve the value of the "friend" parameter
+    const friendValue = queryParams.get("friend");
+    console.log("Friend:", friendValue);
+    return friendValue;
+    }
+
+    function listmessages(){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                let data = JSON.parse(xmlhttp.responseText);
+                messages = data;
+                console.log(data);
+            }
+        };
+        xmlhttp.open("GET",  window.backendURL +"/message"  + "/" + getChatpartner(), true);
+        xmlhttp.setRequestHeader('Authorization',  'Bearer ' + window.token);
+        xmlhttp.send();
+
+    }
+
+    function loadchat(){
+         listmessages();
+        document.getElementById("title").innerHTML = "Chat with " + getChatpartner();
+        document.getElementById("chat").innerHTML="";
+        for(var i = 0; i < messages.length; i++){
+            let div = document.createElement("div");
+            let div2 = document.createElement("div");
+            let div3 = document.createElement("div");
+            div.className="container";
+            div.id= "chatnachricht";
+            div3.className= "timestamp";
+            div2.innerHTML=  messages[i].from + ": " + messages[i].msg;
+            var time = new Date(messages[i].time)
+            div3.innerText = time.getHours() + ":" + time.getMinutes()  + ":" + time.getSeconds();
+            document.getElementById("chat").appendChild(div);
+            div.appendChild(div2);
+            div.appendChild(div3);
+        }
+    }
+
+    function sendmessage(){
+        const inputValue = document.querySelector('input[name="new message"]').value;
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
+                console.log("done...");
+            }
+        };
+        xmlhttp.open("POST", window.backendURL + "/message", true);
+        xmlhttp.setRequestHeader('Content-type', 'application/json');
+        xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
+        let data = {
+            message: inputValue,
+            to: getChatpartner()
+        };
+        let jsonString = JSON.stringify(data);
+        xmlhttp.send(jsonString);
+
+    }
+
+    //login
+    function initLogin() {
+       
+            const username = document.getElementById('usernameInput').value;
+            const password = document.getElementById('passwordInput').value;
+            user = username;
+            login(username, password);
+    }
+    
+    function login(uname, pwd) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 200) {
+                    let data = JSON.parse(xmlhttp.responseText);
+                    console.log("Token: " + data.token);
+                     localStorage.token = data.token;
+                     document.getElementById('login-form').submit();
+                  } else {
+                      document.getElementById('message').innerHTML = 'Invalid username/password combination!';
+                  }
+            }
+        };
+        xmlhttp.open("POST", window.backendUrl + "/login", true); 
+        xmlhttp.setRequestHeader('Content-type', 'application/json');
+        let data = {
+            username: uname,
+            password: pwd
+        };
+        let jsonString = JSON.stringify(data); // Serialize as JSON
+        xmlhttp.send(jsonString);
+    }
