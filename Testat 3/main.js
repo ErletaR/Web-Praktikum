@@ -345,7 +345,7 @@ function getChatpartner() {
                   }
             }
         };
-        xmlhttp.open("POST", window.backendUrl + "/login", true); 
+        xmlhttp.open("POST", window.backendURL + "/login", true); 
         xmlhttp.setRequestHeader('Content-type', 'application/json');
         let data = {
             username: uname,
