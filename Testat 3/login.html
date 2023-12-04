@@ -39,7 +39,7 @@
         </a>
 
         <!--Submit button, ziel ist das was in action-Attribut steht-->
-        <button class="but-2" id="submit" type="button" onclick="initLogin()">Login</button>
+        <button class="but-2" id="submitb" type="button" onclick="initLogin()">Login</button>
     </form>
 
 </body>
