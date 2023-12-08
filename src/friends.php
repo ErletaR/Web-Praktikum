@@ -19,9 +19,9 @@
     <h1>Friends</h1>
     <!--LINKS TO LOGOUT AND SETTINGS-->
     <p>
-        <a href="logout.html" target="_self">&lt; Logout</a> |
+        <a href="logout.php" target="_self">&lt; Logout</a> |
 
-        <a href="settings.html" target="_self">Settings</a>
+        <a href="settings.php" target="_self">Settings</a>
     </p>
 
     <hr>

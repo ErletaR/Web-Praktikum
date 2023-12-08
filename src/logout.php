@@ -1,3 +1,7 @@
+<?php
+require("start.php");
+session_unset();
+?>
 <!DOCTYPE html>
 
 <html>
@@ -22,7 +26,7 @@
             <p>See u!</p>
 
             <!--LINK ZU LOGIN-->
-            <a href="login.html" target="_self">Login again</a>
+            <a href="login.php" target="_self">Login again</a>
         </div>
     </body>
 </html>
