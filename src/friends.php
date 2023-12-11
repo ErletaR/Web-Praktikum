@@ -13,30 +13,27 @@ if(!isset($_SESSION["user"])){
     <title>Friends</title>
     <link rel="stylesheet" type="text/css" href="mystyle.css">
     <meta name="viewport" content="width=device-width">
-    <script src="main.js"></script>
 </head>
 
 <body class="big">
     <script>
         function keyup(input) {
-    document.getElementById("friend-request-name").style.borderColor = "rgb(118, 118, 118)";
-    const text = input.value;
-    initNames(text);
+            document.getElementById("friend-request-name").style.borderColor = "rgb(118, 118, 118)";
+            const text = input.value;
+            initNames(text);
 }
-
+</script>
+<?php
+$users=$service->loadUsers();
+var_dump($users);
+?>
+<script>
 function initNames(prefix) {
     const datalist = document.getElementById('friend-selector');
     datalist.innerHTML = '';
-    for (let name of users) {
-        if (prefix === '' || name.toLowerCase().startsWith(prefix) || name.startsWith(prefix)) {
-            if (name != user && testsame(name)) {
-                console.log('adding ' + name);
-                const option = document.createElement('OPTION');
-                option.setAttribute('value', name);
-                datalist.appendChild(option);
-            }
-        }
-    }
+    const option = document.createElement('OPTION');
+    option.setAttribute('value', "test");
+    datalist.appendChild(option);
 }
 
     </script>
@@ -95,6 +92,7 @@ function initNames(prefix) {
         <input class="col-2" name="friend" placeholder="Add Friend to List" id="friend-request-name"
             list="friend-selector" onkeyup="keyup(this)">
         <datalist id="friend-selector">
+            <option> rtest</option>
             <!-- weitere Einträge -->
         </datalist>
         <button class="but-einzeln" type="submit" name= "action" value="add-friend">Add</button>
