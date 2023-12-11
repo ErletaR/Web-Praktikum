@@ -25,6 +25,7 @@ if(!isset($_SESSION["user"])){
 </script>
 <?php
 $users=$service->loadUsers();
+$test="test";
 var_dump($users);
 ?>
 <script>
@@ -32,7 +33,7 @@ function initNames(prefix) {
     const datalist = document.getElementById('friend-selector');
     datalist.innerHTML = '';
     const option = document.createElement('OPTION');
-    option.setAttribute('value', "test");
+    option.setAttribute('value', "<?php echo $test; ?>");
     datalist.appendChild(option);
 }
 
