@@ -1,7 +1,13 @@
+<?php
+var_dump($_POST);
+require("start.php");
+if(!isset($_SESSION["user"])){
+    header("Location: login.php");
+    exit();  
+}
+?>
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Friends</title>
@@ -12,9 +18,27 @@
 
 <body class="big">
     <script>
-        window.setInterval(function () {
-            friendupdate();
-        }, 1000);
+        function keyup(input) {
+    document.getElementById("friend-request-name").style.borderColor = "rgb(118, 118, 118)";
+    const text = input.value;
+    initNames(text);
+}
+
+function initNames(prefix) {
+    const datalist = document.getElementById('friend-selector');
+    datalist.innerHTML = '';
+    for (let name of users) {
+        if (prefix === '' || name.toLowerCase().startsWith(prefix) || name.startsWith(prefix)) {
+            if (name != user && testsame(name)) {
+                console.log('adding ' + name);
+                const option = document.createElement('OPTION');
+                option.setAttribute('value', name);
+                datalist.appendChild(option);
+            }
+        }
+    }
+}
+
     </script>
     <h1>Friends</h1>
     <!--LINKS TO LOGOUT AND SETTINGS-->
@@ -27,24 +51,53 @@
     <hr>
 
     <!--FRIENDSLIST-->
+    <?php
+    $friends = $service->loadFriends();
+    $unread = $service->getUnread();
+    $countfriends = 0;
+    ?>
     <ul id="friends" class="whitebox">
+    <?php 
+    foreach ($friends as $value) { 
+        if($value->get_status()== "accepted"){
+        $countfriends = 1;?>
+        <li> <div class="container"><a href = "chat.php?friend=<?=$value->get_username()?>" target="_self">
+            <?= $value->get_username() ?>
+        </a>
+        <div class="bluebox"><?= $unread->{$value->get_username()} ?></div>
+    </div></li>
+        <?php } }
+        if($countfriends== 0){?>
+        <p> noch keine Freunde </p>
+        <?php } ?>
     </ul>
     <hr>
 
     <!--FRIEND REQUESTS-->
     <h3>New Requests</h3>
+    <form method="post" action="friends.php" id= "requests">
     <ol id="friendrequests">
+    <?php 
+    foreach ($friends as $value) { 
+        if($value->get_status()== "requested"){?>
+        <li class="col-1">
+            <b> <?= $value->get_username() ?></b>
+            <button class="but-1" type="submit" name="action" value="accept-button<?= $value->get_username() ?>">Accept</button>
+            <button class="but-2" type="submit" name="action" value="reject-button<?= $value->get_username() ?>">Reject</button>
+        </li>
+        <?php }  } ?>
     </ol>
+    </form>
     <hr>
 
     <!--ADD NEW FRIENDS-->
-    <form class="fullline" action="friends.html" target="_self" id="friendrequest">
-        <input class="col-2" name="friendRequestName" placeholder="Add Friend to List" id="friend-request-name"
+    <form class="fullline" action="friends.php" target="_self" id="friendrequest" method="post">
+        <input class="col-2" name="friend" placeholder="Add Friend to List" id="friend-request-name"
             list="friend-selector" onkeyup="keyup(this)">
         <datalist id="friend-selector">
             <!-- weitere Einträge -->
         </datalist>
-        <button class="but-einzeln" type="button" onclick="checkForm()">Add</button>
+        <button class="but-einzeln" type="submit" name= "action" value="add-friend">Add</button>
     </form>
 
 </body>

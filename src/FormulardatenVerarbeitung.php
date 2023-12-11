@@ -1,4 +1,5 @@
 <?php
+var_dump($_POST);
 $testWert = "";
 if(isset($_POST['test'])) {
 $testWert = $_POST['test'];
@@ -14,6 +15,7 @@ $testWert = $_POST['test'];
 <body>
     <h1> FormulardatenVerarbeitung</h1>
     <form method="post" action="FormulardatenVerarbeitung.php">
+    <label name = "friend" value="sda"> sda</label>
 <input name="test" value="<?= $testWert; ?>">
 <button type="submit" name="action" value="foo1">Absenden1</button>
 <button type="submit" name="action" value="foo2">Absenden2</button>
