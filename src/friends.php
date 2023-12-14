@@ -16,25 +16,34 @@ if(!isset($_SESSION["user"])){
 </head>
 
 <body class="big">
+
+<?php
+$friendlist = $service->loadFriends();
+$userList = $service ->loadUsers();
+var_dump($userList);
+var_dump($friendlist);
+?>
+
     <script>
+        var users =[];
+        var friends = [];
         function keyup(input) {
             document.getElementById("friend-request-name").style.borderColor = "rgb(118, 118, 118)";
             const text = input.value;
+            users = <?php echo json_encode($service ->loadUsers()) ?>;
+            friends = <?php echo json_encode($service ->loadFriends()) ?>;
             initNames(text);
-}
-</script>
-<?php
-$users=$service->loadUsers();
-$test="test";
-var_dump($users);
-?>
-<script>
+        }
 function initNames(prefix) {
     const datalist = document.getElementById('friend-selector');
     datalist.innerHTML = '';
+    for (let name of users) {
+        if (prefix === '' || name.toLowerCase().startsWith(prefix) || name.startsWith(prefix)) {
+            if (name != "<?php echo $_SESSION["user"]?>" && !friends.includes(name)){
     const option = document.createElement('OPTION');
-    option.setAttribute('value', "<?php echo $test; ?>");
+    option.setAttribute('value', name);
     datalist.appendChild(option);
+    }}}
 }
 
     </script>
