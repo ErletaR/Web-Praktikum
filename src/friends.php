@@ -140,7 +140,54 @@ loadFriends();
                 }}
             }
         function loadFriends(){
-            
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "php/ajax_load_friends.php", false);
+            xmlhttp.send();
+            if (xmlhttp.responseText != "") {
+                let friends = JSON.parse(xmlhttp.responseText);
+                while (document.getElementById("friends").firstChild) {
+        document.getElementById("friends").removeChild(document.getElementById("friends").firstChild);
+    }
+    while (document.getElementById("friendrequests").firstChild) {
+        document.getElementById("friendrequests").removeChild(document.getElementById("friendrequests").firstChild);
+    }
+    for (var i = 0; i < friends.length; i++) {
+        if (friends[i].status == "accepted") {
+            let li = document.createElement("li");
+            let div = document.createElement("div");
+            let div2 = document.createElement("div");
+            let a = document.createElement("a");
+            div2.className = "bluebox";
+            div.className = "container";
+            a.innerText = friends[i].username;
+            a.setAttribute("href", "chat.html?friend=" + friends[i].username);
+            div2.innerHTML = friends[i].unread;
+            document.getElementById("friends").appendChild(li);
+            li.appendChild(div);
+            div.appendChild(a);
+            div.appendChild(div2);
+        } else {
+            let li2 = document.createElement("li");
+            let but1 = document.createElement("button");
+            let but2 = document.createElement("button");
+            let b = document.createElement("b");
+            li2.className = "col-1";
+            but1.className = "but-1";
+            but2.className = "but-2";
+            but1.innerHTML = "Accept";
+            but2.innerHTML = "Reject";
+            but1.type = "submit";
+            but2.type = "submit";
+            li2.innerText = "Friend request from";
+            b.innerText = friends[i].username;
+            document.getElementById("friendrequests").appendChild(li2);
+            li2.appendChild(b);
+            li2.appendChild(but1);
+            li2.appendChild(but2);
+        }
+    }
+
+            }
         }
 </script>
 
