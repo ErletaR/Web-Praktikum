@@ -1,13 +1,11 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors',1);
+var_dump($_POST);
 var_dump($_POST['action']);
 require("start.php");
 
 $friendList = $service->loadFriends();
 $userList = $service ->loadUsers();
 $service->removeFriend("hello");
-var_dump($friendList);
 if(!isset($_SESSION["user"])){
     header("Location: login.php");
     exit();  
@@ -21,10 +19,10 @@ if(isset($_POST['action'])){
             processRemoveFriend();
         }
         if (substr($_POST['action'],0,13)=="accept-button"){
-            processAcceptFriend();
+            //processAcceptFriend();
         }
         if (substr($_POST['action'],0,13)=="reject-button"){
-            processRejectFriend();
+            //processRejectFriend();
         }
 }
 
@@ -141,7 +139,7 @@ loadFriends();
             }
         function loadFriends(){
             const xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "php/ajax_load_friends.php", false);
+            xmlhttp.open("GET", "/ajax_load_friends.php", false);
             xmlhttp.send();
             if (xmlhttp.responseText != "") {
                 let friends = JSON.parse(xmlhttp.responseText);
@@ -178,7 +176,11 @@ loadFriends();
             but2.innerHTML = "Reject";
             but1.type = "submit";
             but2.type = "submit";
-            li2.innerText = "Friend request from";
+            but1.setAttribute("name","action");
+            but2.setAttribute("name","action");
+            but1.setAttribute("value","accept-button"+friends[i].username);
+            but2.setAttribute("value","reject-button"+friends[i].username);
+            li2.innerText = "Friend request from ";
             b.innerText = friends[i].username;
             document.getElementById("friendrequests").appendChild(li2);
             li2.appendChild(b);
@@ -232,6 +234,7 @@ loadFriends();
     foreach ($friends as $value) { 
         if($value->get_status()== "requested"){?>
         <li class="col-1">
+            Friend request from
             <b> <?= $value->get_username() ?></b>
             <button class="but-1" type="submit" name="action" value="accept-button<?= $value->get_username() ?>">Accept</button>
             <button class="but-2" type="submit" name="action" value="reject-button<?= $value->get_username() ?>">Reject</button>
