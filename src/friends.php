@@ -5,6 +5,7 @@ require("start.php");
 
 $friendList = $service->loadFriends();
 $userList = $service ->loadUsers();
+var_dump($userList);
 $service->removeFriend("hello");
 if(!isset($_SESSION["user"])){
     header("Location: login.php");
@@ -158,7 +159,7 @@ loadFriends();
             div2.className = "bluebox";
             div.className = "container";
             a.innerText = friends[i].username;
-            a.setAttribute("href", "chat.html?friend=" + friends[i].username);
+            a.setAttribute("href", "chat.php?friend=" + friends[i].username);
             div2.innerHTML = friends[i].unread;
             document.getElementById("friends").appendChild(li);
             li.appendChild(div);
