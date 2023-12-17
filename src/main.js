@@ -68,7 +68,9 @@ function userExists(user) {
     //default value
     let returnVal = false;
 
-    const requestUrl = window.backendURL;
+    let currentUrl = window.location.href;
+
+    const requestUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
 
     var xmlhttp = new XMLHttpRequest();
     
@@ -83,8 +85,8 @@ function userExists(user) {
             }
         }
     };
-    
-    xmlhttp.open("GET", requestUrl + "/user/" + user, false);
+
+    xmlhttp.open("GET", requestUrl + "ajax_check_user.php?user=" + user, false);
     xmlhttp.send();
 
     return returnVal;
@@ -268,6 +270,11 @@ function getChatpartner() {
     }
 
     function listmessages(){
+
+        let currentUrl = window.location.href;
+
+        const requestUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -276,10 +283,9 @@ function getChatpartner() {
                 console.log(data);
             }
         };
-        xmlhttp.open("GET",  window.backendURL +"/message"  + "/" + getChatpartner(), true);
-        xmlhttp.setRequestHeader('Authorization',  'Bearer ' + window.token);
+        
+        xmlhttp.open("GET", requestUrl + "ajax_load_messages.php?to=" + getChatpartner(), true);
         xmlhttp.send();
-
     }
 
     function loadchat(){
@@ -302,24 +308,31 @@ function getChatpartner() {
         }
     }
 
-    function sendmessage(){
+    function sendmessage() {
+        
+        let currentUrl = window.location.href;
+
+        const requestUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+
         const inputValue = document.querySelector('input[name="new message"]').value;
+
         let xmlhttp = new XMLHttpRequest();
+        
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
                 console.log("done...");
             }
         };
-        xmlhttp.open("POST", window.backendURL + "/message", true);
-        xmlhttp.setRequestHeader('Content-type', 'application/json');
-        xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.token);
+        
         let data = {
-            message: inputValue,
+            msg: inputValue,
             to: getChatpartner()
         };
+        
         let jsonString = JSON.stringify(data);
+        
+        xmlhttp.open("POST", requestUrl + "ajax_send_message.php", false);
         xmlhttp.send(jsonString);
-
     }
 
     //login
