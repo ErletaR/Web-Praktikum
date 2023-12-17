@@ -23,10 +23,10 @@ if(isset($_POST['action'])){
             processFriendRequest($friendList, $userList);
         }
         if (substr($_POST['action'],0,13)=="accept-button"){
-            //processAcceptFriend();
+            processAcceptFriend();
         }
         if (substr($_POST['action'],0,13)=="reject-button"){
-            //processRejectFriend();
+            processRejectFriend();
         }
 }
 
