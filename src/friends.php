@@ -1,11 +1,10 @@
 <?php
-var_dump($_POST);
-var_dump($_POST['action']);
+
 require("start.php");
 
 $friendList = $service->loadFriends();
 $userList = $service ->loadUsers();
-var_dump($userList);
+
 $service->removeFriend("hello");
 if(!isset($_SESSION["user"])){
     header("Location: login.php");
