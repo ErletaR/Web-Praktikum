@@ -48,7 +48,7 @@ if (isset($_SESSION['user']) && trim($_SESSION['user'], " ") != "" && isset($_SE
         <p>
             <a href="friends.php" target="_self">&lt; Back</a> |
             <a href="profile.php" target="_self">Profile</a> |
-            <a class="remove" href="friends.php" target="_self">Remove Friend</a> 
+            <a class="remove" href="friends.php?action=remove-friend&friend=<?= $_GET['friend']; ?>" target="_self">Remove Friend</a>
         </p>
 
         <!--THE CHAT-->

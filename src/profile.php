@@ -12,8 +12,8 @@
     <body class="big">
         <h1>Profile of Tom</h1>
         <p>
-            <a href="chat.html" target="_self">&lt; Back to Chat</a> |
-            <a class="remove" href="friends.html" target="_self">Remove the friend</a>  <!--just go to friendslist or directly remove the friend?--> 
+            <a href="chat.php" target="_self">&lt; Back to Chat</a> |
+            <a class="remove" href="friends.php" target="_self">Remove the friend</a>  <!--just go to friendslist or directly remove the friend?--> 
         </p>
         <hr>
 

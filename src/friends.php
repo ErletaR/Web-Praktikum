@@ -12,6 +12,15 @@ if(!isset($_SESSION["user"])){
     exit();  
 }
 
+if(isset($_POST['action']) && $_POST['action'] == "add-friend") {
+    processFriendRequest($friendList, $userList);
+}
+
+if(isset($_GET['action']) && $_GET['action'] == "remove-friend") {
+    processRemoveFriend();
+}
+
+/*
 if(isset($_POST['action'])){
     switch($_POST['action']){
         case "add-friend":
@@ -26,6 +35,7 @@ if(isset($_POST['action'])){
             //processRejectFriend();
         }
 }
+*/
 
 function processFriendRequest($friendList, $userList) {
     $service = new Utils\BackendService(CHAT_SERVER_URL, CHAT_SERVER_ID);
@@ -56,6 +66,7 @@ function processRejectFriend(){
 }
 // woher name 
 function processRemoveFriend(){
+    $friend = $_GET['friend'];
     //if ($service->removeFriend("")) {header("Location: friendlist.php");}
 }
 
