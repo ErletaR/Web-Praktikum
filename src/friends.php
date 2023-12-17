@@ -62,6 +62,7 @@ function processRemoveFriend(){
     $friend = $_GET['friend'];
     if ($service->removeFriend($friend)) {
         header("Location: friendlist.php");
+        exit(); 
     }
 }
 
