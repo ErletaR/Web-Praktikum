@@ -70,6 +70,6 @@ if (isset($_SESSION['user']) && trim($_SESSION['user'], " ") != "" && isset($_SE
                 <button class="but-einzeln" type="button" onclick="sendmessage()">Send</button>
             </form>
         </p>
-        
+       1 
     </body>
 </html>
