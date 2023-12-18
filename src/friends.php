@@ -1,7 +1,6 @@
 <?php
 
 require("start.php");
-
 $friendList = $service->loadFriends();
 $userList = $service ->loadUsers();
 
@@ -58,11 +57,14 @@ function processRejectFriend(){
 }
 // woher name 
 function processRemoveFriend(){
+    $service = new Utils\BackendService(CHAT_SERVER_URL, CHAT_SERVER_ID);
     $friend = $_GET['friend'];
+    var_dump($friend);
     if ($service->removeFriend($friend)) {
-        header("Location: friendlist.php");
-        exit(); 
+        header("Location: friends.php");
+    exit();
     }
+    
 }
 
 
@@ -156,8 +158,10 @@ loadFriends();
     while (document.getElementById("friendrequests").firstChild) {
         document.getElementById("friendrequests").removeChild(document.getElementById("friendrequests").firstChild);
     }
+    var count=0;
     for (var i = 0; i < friends.length; i++) {
         if (friends[i].status == "accepted") {
+            count=1;
             let li = document.createElement("li");
             let div = document.createElement("div");
             let div2 = document.createElement("div");
@@ -195,8 +199,13 @@ loadFriends();
             li2.appendChild(but2);
         }
     }
+    if(count==0){
+        let p = document.createElement("p");
+        p.innerHTML = "noch keine Freunde "
+        document.getElementById("friends").appendChild(p);
+    }
+}
 
-            }
         }
 </script>
 
