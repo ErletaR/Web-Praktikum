@@ -74,11 +74,12 @@ function processRemoveFriend(){
 <head>
     <meta charset="utf-8">
     <title>Friends</title>
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="mystyle2.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width">
 </head>
 
-<body class="big">
+<body class="bg-light big">
 
 <?php
 $friendList = $service->loadFriends();
@@ -165,16 +166,22 @@ loadFriends();
             let li = document.createElement("li");
             let div = document.createElement("div");
             let div2 = document.createElement("div");
+            let div3 = document.createElement("div");
             let a = document.createElement("a");
-            div2.className = "bluebox";
-            div.className = "container";
+            div.className = "d-flex flex-row";
+            div2.className = "flex-fill";
+            div3.className = "bg-primary px-2 text-white rounded-circle";
+            a.className="link-dark";
+            li.className="list-group-item ";
             a.innerText = friends[i].username;
             a.setAttribute("href", "chat.php?friend=" + friends[i].username);
-            div2.innerHTML = friends[i].unread;
+            a.setAttribute("style","text-decoration: none;");
+            div3.innerHTML = friends[i].unread;
             document.getElementById("friends").appendChild(li);
             li.appendChild(div);
-            div.appendChild(a);
             div.appendChild(div2);
+            div2.appendChild(a);
+            div.appendChild(div3);
         } else {
             let li2 = document.createElement("li");
             let but1 = document.createElement("button");
@@ -207,62 +214,76 @@ loadFriends();
 }
 
         }
+function test(name){
+    var myModal = new bootstrap.Modal(document.getElementById('friendRequestModal'));
+    console.log(name);
+    myModal.show();
+}
 </script>
+<div class="container">
 
-    <h1>Friends</h1>
+    <h1 class= "my-3">Friends</h1>
     <!--LINKS TO LOGOUT AND SETTINGS-->
-    <p>
-        <a href="logout.php" target="_self">&lt; Logout</a> |
-
-        <a href="settings.php" target="_self">Settings</a>
-    </p>
-
-    <hr>
+    <div class="btn-group mb-3">
+            <a class="btn btn-secondary" href="logout.php">&lt; Logout</a>
+            <a class="btn btn-secondary" href="settings.php">Settings</a>
+    </div>
+    <hr class="mb-4">
 
     <!--FRIENDSLIST-->
+    <div class="content-group" id="liste">
+            <div id="friend-list" class="list-group">
     <?php
     $friends = $service->loadFriends();
     $unread = $service->getUnread();
     $countfriends = 0;
     ?>
-    <ul id="friends" class="whitebox">
+    <ul id="friends" class="list-group">
     <?php 
     foreach ($friends as $value) { 
         if($value->get_status()== "accepted"){
         $countfriends = 1;?>
-        <li> <div class="container"><a href = "chat.php?friend=<?=$value->get_username()?>" target="_self">
+        <li  class="list-group-item " >
+        <div class="d-flex flex-row">
+            <div class="flex-fill">
+            <a class="link-dark" href = "chat.php?friend=<?=$value->get_username()?>" target="_self" style="text-decoration: none;">
             <?= $value->get_username() ?>
         </a>
-        <div class="bluebox"><?= $unread->{$value->get_username()} ?></div>
-    </div></li>
+        </div>
+
+        <div class = "bg-primary px-2 text-white rounded-circle"><?= $unread->{$value->get_username()} ?></div>
+        </div>
+    </li>
         <?php } }
         if($countfriends== 0){?>
         <p> noch keine Freunde </p>
         <?php } ?>
     </ul>
-    <hr>
+        </div>
+        </div>
+
+    <hr class="my-4">
 
     <!--FRIEND REQUESTS-->
     <h3>New Requests</h3>
     <form method="post" action="friends.php" id= "requests">
-    <ol id="friendrequests">
+    <ol id="friendrequests" class="list-group list-group-numbered">
     <?php 
     foreach ($friends as $value) { 
         if($value->get_status()== "requested"){?>
-        <li class="col-1">
+        <li class="list-group-item">
             Friend request from
-            <b> <?= $value->get_username() ?></b>
-            <button class="but-1" type="submit" name="action" value="accept-button<?= $value->get_username() ?>">Accept</button>
-            <button class="but-2" type="submit" name="action" value="reject-button<?= $value->get_username() ?>">Reject</button>
+            <a onclick="test('<?= $value->get_username() ?>')" id= "request" class="link-dark" href="" style="text-decoration: none;"> <?= $value->get_username() ?></a>
         </li>
         <?php }  } ?>
     </ol>
     </form>
-    <hr>
+    <hr class="my-4">
 
     <!--ADD NEW FRIENDS-->
     <form class="fullline" action="friends.php" target="_self" id="friendrequest" method="post">
-        <input class="col-2" name="friend" placeholder="Add Friend to List" id="friend-request-name"
+    <div class="input-group">
+        <input class="form-control" name="friend" placeholder="Add Friend to List" id="friend-request-name"
             list="friend-selector" onkeyup="keyup(this)">
         <datalist id="friend-selector">
         <?php
@@ -273,8 +294,35 @@ loadFriends();
                     }
                 ?>
         </datalist>
-        <button class="but-einzeln" type="submit" name= "action" value="add-friend">Add</button>
+        <button class="btn btn-primary" type="submit" name= "action" value="add-friend">Add</button>
+                </div>
     </form>
+
+    <div class="modal" tabindex="-1" id="friendRequestModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="friendRequestModalLabel" >Request from</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+      </div>
+      <div class="modal-body">
+      Accept request?
+      </div>
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="dismissFriendRequest()">Dismiss</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="acceptFriendRequest()">Accpet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+
+        var myModal = new bootstrap.Modal(document.getElementById('friendRequestModal'));
+    </script>
 
 </body>
 

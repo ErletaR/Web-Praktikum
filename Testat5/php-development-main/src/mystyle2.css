@@ -1,0 +1,9 @@
+body.small>div.container{
+    max-width: 500px;
+}
+
+
+img.round{
+    width: 150px;
+    height: 150px;
+}

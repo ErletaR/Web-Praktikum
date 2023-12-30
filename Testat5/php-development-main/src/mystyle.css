@@ -1,5 +1,7 @@
 /**{
     margin: 5px auto 5px auto;
+                <button class="but-1" type="submit" name="action" value="accept-button<?= $value->get_username() ?>">Accept</button>
+            <button class="but-2" type="submit" name="action" value="reject-button<?= $value->get_username() ?>">Reject</button>
 }*/
 
 body{
