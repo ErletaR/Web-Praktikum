@@ -7,3 +7,7 @@ img.round{
     width: 150px;
     height: 150px;
 }
+
+.custom-btn {
+    font-weight: 900 !important; 
+  }

@@ -47,8 +47,10 @@ function processFriendRequest($friendList, $userList) {
 }
 
 function processAcceptFriend() {
+    console.log("a");
     $service = new Utils\BackendService(CHAT_SERVER_URL, CHAT_SERVER_ID);
-        $service->friendAccept(substr($_POST['action'],13));
+    $service->friendAccept(substr($_POST['action'],13));
+    
 }
 
 function processRejectFriend(){
@@ -74,6 +76,7 @@ function processRemoveFriend(){
 <head>
     <meta charset="utf-8">
     <title>Friends</title>
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" type="text/css" href="mystyle2.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width">
@@ -128,7 +131,6 @@ setInterval(function() {
 loadFriends();
 }, 2000);
 
-
         var users =[];
         var friends = [];
         function keyup(input) {
@@ -147,6 +149,7 @@ loadFriends();
                     datalist.appendChild(option);
                 }}
             }
+            
         function loadFriends(){
             const xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", "/ajax_load_friends.php", false);
@@ -185,25 +188,14 @@ loadFriends();
         } else {
             let li2 = document.createElement("li");
             let but1 = document.createElement("button");
-            let but2 = document.createElement("button");
-            let b = document.createElement("b");
-            li2.className = "col-1";
-            but1.className = "but-1";
-            but2.className = "but-2";
-            but1.innerHTML = "Accept";
-            but2.innerHTML = "Reject";
-            but1.type = "submit";
-            but2.type = "submit";
-            but1.setAttribute("name","action");
-            but2.setAttribute("name","action");
-            but1.setAttribute("value","accept-button"+friends[i].username);
-            but2.setAttribute("value","reject-button"+friends[i].username);
+            li2.className = "list-group-item";
+            li2.setAttribute("data-value", "value");
+            but1.className = "btn btn-link button text-dark text-decoration-none font-weight-bold custom-btn";
+            but1.innerHTML = friends[i].username;
+            but1.setAttribute("data-value",friends[i].username);
             li2.innerText = "Friend request from ";
-            b.innerText = friends[i].username;
             document.getElementById("friendrequests").appendChild(li2);
-            li2.appendChild(b);
             li2.appendChild(but1);
-            li2.appendChild(but2);
         }
     }
     if(count==0){
@@ -214,11 +206,7 @@ loadFriends();
 }
 
         }
-function test(name){
-    var myModal = new bootstrap.Modal(document.getElementById('friendRequestModal'));
-    console.log(name);
-    myModal.show();
-}
+
 </script>
 <div class="container">
 
@@ -273,7 +261,7 @@ function test(name){
         if($value->get_status()== "requested"){?>
         <li class="list-group-item">
             Friend request from
-            <a onclick="test('<?= $value->get_username() ?>')" id= "request" class="link-dark" href="" style="text-decoration: none;"> <?= $value->get_username() ?></a>
+            <but class= "btn btn-link button text-dark text-decoration-none font-weight-bold custom-btn" style="text-decoration-none" data-value= "<?= $value->get_username() ?>"> <?= $value->get_username() ?></but>
         </li>
         <?php }  } ?>
     </ol>
@@ -303,25 +291,40 @@ function test(name){
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="friendRequestModalLabel" >Request from</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" >
                     </button>
       </div>
       <div class="modal-body">
       Accept request?
       </div>
+      <form method="post" action="friends.php" id= "requests">
       <div class="modal-footer">
-      <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="dismissFriendRequest()">Dismiss</button>
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="acceptFriendRequest()">Accpet</button>
+      <button id= "reject"type="submit" class="btn btn-secondary" name="action" value="reject-button">Dismiss</button>
+      <button id="accept" type="submit" class="btn btn-primary" name="action" value="accept-button">Accpet</button>
       </div>
+        </form>
     </div>
   </div>
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
+        var modal = new bootstrap.Modal(document.getElementById('friendRequestModal'));
+        const buttonContainer = document.getElementById("friendrequests");
 
-        var myModal = new bootstrap.Modal(document.getElementById('friendRequestModal'));
+function openModal(event) {
+    event.preventDefault();
+  if (event.target.classList.contains("button")) {
+    const buttonValue = event.target.getAttribute("data-value");
+    document.getElementById("friendRequestModalLabel").innerHTML = "Request From " + buttonValue;
+    document.getElementById("reject").setAttribute("value","reject-button"+buttonValue);
+    document.getElementById("accept").setAttribute("value","accept-button"+buttonValue);
+    modal.show();
+  }
+}
+
+buttonContainer.addEventListener("click", openModal);
+
     </script>
 
 </body>
