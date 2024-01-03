@@ -1,5 +1,4 @@
 <?php
-
 require("start.php");
 $friendList = $service->loadFriends();
 $userList = $service ->loadUsers();
@@ -47,7 +46,6 @@ function processFriendRequest($friendList, $userList) {
 }
 
 function processAcceptFriend() {
-    console.log("a");
     $service = new Utils\BackendService(CHAT_SERVER_URL, CHAT_SERVER_ID);
     $service->friendAccept(substr($_POST['action'],13));
     

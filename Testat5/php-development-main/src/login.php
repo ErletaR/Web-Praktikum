@@ -63,11 +63,11 @@ if(isset($_POST['usrn'])&& isset($_POST['pass'])){
         <div class="col-12">
         <div class="btn-group w-100">
         <!--Button mit link zur Registrierung page-->
-        <a href="register.php" target="_self" style="text-decoration: none;" class="but-1 btn btn-lg btn-secondary"> <!--link für das ziel-->Register                             <!--der Button-->
+        <a href="register.php" target="_self" style="text-decoration: none;" class="btn btn-lg btn-secondary"> <!--link für das ziel-->Register                             <!--der Button-->
         </a>
 
         <!--Submit button, ziel ist das was in action-Attribut steht-->
-        <button class="but-2 btn btn-lg btn-primary" id="submitb" type="submit" >Login</button>
+        <button class="btn btn-lg btn-primary" id="submitb" type="submit" >Login</button>
         </div>
         </div>
     </div>
