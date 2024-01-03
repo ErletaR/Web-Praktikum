@@ -2,6 +2,24 @@ body.small>div.container{
     max-width: 500px;
 }
 
+body.chat-big>div.container{
+    max-width: 500px;
+}
+
+body.small>div.container-reg{
+    max-width: 350px;
+}
+
+body.chat-big>div.container-chat{
+    max-width: 700px;
+}
+
+#chatnachricht{
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 img.round{
     width: 150px;
@@ -10,4 +28,4 @@ img.round{
 
 .custom-btn {
     font-weight: 900 !important; 
-  }
+}

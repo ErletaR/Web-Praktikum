@@ -211,39 +211,46 @@ function checkRegisterInput() {
     //Der gewählte Nutzername soll min. drei Zeichen lang sein
     if(usernameInput.value.length < 3 ){
         alert('The username needs to have at least 3 characters or more!');
-        usernameInput.style.borderColor = "red";
+        //usernameInput.style.borderColor = "red";
+        usernameInput.setAttribute("class", "form-control p-3 is-invalid");
         returnVal = false;
     } else {
-        usernameInput.style.borderColor = "green";
+        //usernameInput.style.borderColor = "green";
+        usernameInput.setAttribute("class", "form-control p-3 is-valid");
     }
 
     //Das Passwort muss min. 8 Zeichen haben
     if(passwordInput.value.length < 8 ){
         alert('The password needs to have at least 8 characters or more!');
-        passwordInput.style.borderColor = "red";
+        //passwordInput.style.borderColor = "red";
+        passwordInput.setAttribute("class", "form-control p-3 is-invalid");
         returnVal = false;
     } else {
-        passwordInput.style.borderColor = "green";
+        //passwordInput.style.borderColor = "green";
+        passwordInput.setAttribute("class", "form-control p-3 is-valid");
     }
 
     //Die Passwort-Wiederholung muss dem Passwort entsprechen
     if(passwordInput.value !== confirmPasswordInput.value){
         alert('The password confirmation does not match!');
-        confirmPasswordInput.style.borderColor = "red";
+        //confirmPasswordInput.style.borderColor = "red";
+        confirmPasswordInput.setAttribute("class", "form-control p-3 is-invalid");
         returnVal = false;
     } else {
-        confirmPasswordInput.style.borderColor = "green";
+        //confirmPasswordInput.style.borderColor = "green";
+        confirmPasswordInput.setAttribute("class", "form-control p-3 is-valid");
     }
 
     //Der gewählte Nutzername darf noch nicht verwendet worden sein
     if(userExists(usernameInput.value)) {
         alert('User already exists!');
-        usernameInput.style.borderColor = "red";
+        //usernameInput.style.borderColor = "red";
+        usernameInput.setAttribute("class", "form-control p-3 is-invalid");
         returnVal = false;
     } else {
-        if(usernameInput.style.borderColor !== "red") {
-            usernameInput.style.borderColor = "green";
-        }
+        //if(usernameInput.style.borderColor !== "red") {
+        //    usernameInput.style.borderColor = "green";
+        //}
     }
 
     // alternative method to check for user existence
@@ -256,6 +263,37 @@ function checkRegisterInput() {
 
     return returnVal;
 }
+
+//chat
+
+function getChatpartner() {
+    const url = new URL(window.location.href);
+    // Access the query parameters using searchParams
+    const queryParams = url.searchParams;
+    // Retrieve the value of the "friend" parameter
+    const friendValue = queryParams.get("friend");
+    console.log("Friend:", friendValue);
+    return friendValue;
+    }
+
+    function listmessages(){
+
+        let currentUrl = window.location.href;
+
+        const requestUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                let data = JSON.parse(xmlhttp.responseText);
+                messages = data;
+                console.log(data);
+            }
+        };
+        
+        xmlhttp.open("GET", requestUrl + "ajax_load_messages.php?to=" + getChatpartner(), true);
+        xmlhttp.send();
+    }
 
 //chat
 
